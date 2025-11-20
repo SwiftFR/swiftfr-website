@@ -7,50 +7,51 @@ import Image from "next/image";
 
 const BENEFITS = [
   {
-    icon: "/icons/more-profits.png",
+    icon: "/Icons/more-profits.png",
     title: "More Profits",
     description:
       "We provide competitive pricing without sacrificing quality or speed.",
   },
   {
-    icon: "/icons/unlimited-catalogue.png",
+    icon: "/Icons/unlimited-catalogue.png",
     title: "Unlimited Catalogue",
     description: "Products sourced from platforms like 1688 and AliExpress.",
   },
   {
-    icon: "/icons/fast-fulfillment.png",
+    icon: "/Icons/fast-fulfillment.png",
     title: "100% Automated",
     description: "Integration with Shopify, WooCommerce and eBay.",
   },
   {
-    icon: "/icons/pro-branding.png",
+    icon: "/Icons/pro-branding.png",
     title: "Pro Branding",
     description: "Branded and personalised labels on demand.",
   },
   {
-    icon: "/icons/returns.png",
+    icon: "/Icons/returns.png",
     title: "Managed Returns & Exchanges",
     description:
       "Unsatisfied customer? Send a photo to receive immediate refund or replacement.",
   },
   {
-    icon: "/icons/shipping.png",
+    icon: "/Icons/shipping.png",
     title: "Optimized Shipping",
     description:
       "We match your products to the fastest, most cost-effective routes.",
   },
   {
-    icon: "/icons/quality.png",
+    icon: "/Icons/quality.png",
     title: "Ensured Quality Control",
     description: "We quality-check each product before packaging.",
   },
   {
-    icon: "/icons/customer-care.png",
+    icon: "/Icons/customer-care.png",
     title: "Customer Care",
     description:
       "Our dedicated team resolves issues with clear communication.",
   },
 ];
+
 
 export default function HomePage() {
   return (
