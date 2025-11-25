@@ -23,8 +23,7 @@ export default function AboutClient() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="mt-4 max-w-3xl text-gray-600"
       >
-        I started SwiftFR after watching friends struggle with fulfillment as their stores grew slow lanes, unclear pricing, and inconsistent QC. My background is in building systems, so I treated the problem like an operations challenge: map the lanes, vet agents, standardize checks, and make communication simple.
-      </motion.p>
+We started SwiftFR after seeing friends struggle with fulfillment as their stores grew: slow lanes, unclear pricing, and inconsistent QC. With a background in building systems, we approached the problem like an operations challenge: map the lanes, vet agents, standardize checks, and simplify communication.      </motion.p>
 
       <motion.p
         initial={{ opacity: 0, y: 12 }}
