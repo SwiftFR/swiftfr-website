@@ -6,8 +6,8 @@ import EmailButton from "@/components/EmailButton";
 const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700'] })
 
 export const metadata: Metadata = {
-  title: 'swiftFR — China 3PL Matchmaking for E-commerce & Dropshippers',
-  description: 'swiftFR connects e-commerce sellers with vetted Chinese 3PL partners. Faster fulfillment, lower costs, reliable service.',
+  title: 'SwiftFR — China 3PL Matchmaking for E-commerce & Dropshippers',
+  description: 'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners. Faster fulfillment, lower costs, reliable service.',
   keywords: ['3PL', 'fulfillment', 'China 3PL', 'dropshipping', 'ecommerce logistics', 'swiftFR'],
   metadataBase: new URL('https://swiftfr.example.com'),
 }
