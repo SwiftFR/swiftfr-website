@@ -1,5 +1,6 @@
 "use client";
 
+import Script from 'next/script'
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -56,6 +57,28 @@ const BENEFITS = [
 export default function HomePage() {
   return (
     <Layout>
+<Script
+  id="swiftfr-org-schema"
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'SwiftFR',
+      url: 'https://swiftfr.com',
+      logo: 'https://swiftfr.com/mini-logo.png', // adjust if different
+      description:
+        'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners for fast, reliable fulfillment.',
+      sameAs: [
+        // add socials when you have them, e.g.:
+        // 'https://www.linkedin.com/company/swiftfr',
+        // 'https://twitter.com/swiftfr',
+      ],
+    }),
+  }}
+/>
+
+
       <section className="py-16 sm:py-24">
         {/* HERO */}
         <div className="mx-auto max-w-3xl text-center">

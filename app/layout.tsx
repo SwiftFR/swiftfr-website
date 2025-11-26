@@ -5,11 +5,42 @@ import EmailButton from "@/components/EmailButton";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700'] })
 
+const siteUrl = 'https://swiftfr-website.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'SwiftFR',
-  description: 'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners. Faster fulfillment, lower costs, reliable service.',
-  keywords: ['3PL', 'fulfillment', 'China 3PL', 'dropshipping', 'ecommerce logistics', 'swiftFR'],
-  metadataBase: new URL('https://swiftfr.example.com'),
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'SwiftFR — China 3PL Matching for E-commerce Brands',
+    template: '%s | SwiftFR',
+  },
+  description:
+    'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners. Faster fulfillment, lower costs, and reliable service for brands shipping to the EU and US.',
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    title: 'SwiftFR — China 3PL Matching for E-commerce Brands',
+    description:
+      'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners for faster, more reliable fulfillment.',
+    siteName: 'SwiftFR',
+    images: [
+      {
+        url: 'og-image.png', // put an image with this name in /public
+        width: 1200,
+        height: 630,
+        alt: 'SwiftFR - China 3PL Matching for E-commerce Sellers',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SwiftFR — China 3PL Matching for E-commerce Brands',
+    description:
+      'SwiftFR connects e-commerce sellers with vetted Chinese 3PL partners for faster, more reliable fulfillment.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
 }
 
 export default function RootLayout({
@@ -21,10 +52,8 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body className="bg-white text-gray-900 antialiased min-h-screen flex flex-col">
         {children}
-        {/* 👇 ADD THIS LINE — this shows the floating email button on all pages */}
         <EmailButton />
       </body>
     </html>
   )
 }
-
