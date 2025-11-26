@@ -16,7 +16,7 @@ export default function Footer() {
               height={32}
               className="rounded-lg object-contain"
             />
-            <span className="text-lg font-semibold">swiftFR</span>
+            <span className="text-lg font-semibold">SwiftFR</span>
           </div>
           <p className="text-sm text-gray-600">Connecting sellers with vetted China 3PL partners.</p>
         </div>
@@ -42,7 +42,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-100 py-4 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} swiftFR. All rights reserved.
+        © {new Date().getFullYear()} SwiftFR. All rights reserved.
       </div>
     </footer>
   )
