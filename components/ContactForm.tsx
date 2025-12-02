@@ -160,7 +160,7 @@ export default function ContactForm() {
           Primary Sales Channels
         </label>
         <div className="space-y-2">
-          {["Shopify", "Amazon", "Etsy", "TikTok Shop"].map((channel) => (
+          {["Shopify", "Amazon", "Etsy", "TikTok Shop", "Other"].map((channel) => (
             <label key={channel} className="flex items-center">
               <input
                 type="checkbox"
