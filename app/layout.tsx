@@ -8,25 +8,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-  <Script
+        <Script
     src="https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3"
-    strategy="afterInteractive"
+    strategy="afterInteractive" 
   />
-  <Script id="ga4" strategy="afterInteractive">
-    {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XZ6D9ZMVK3');
-}
-  </Script>
-</head>
-
+<Script id="ga4" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XZ6D9ZMVK3');
+  `}
+</Script>
+      </head>
       <body>{children}</body>
     </html>
-  );
+  )
 }
-
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700'] })
 
