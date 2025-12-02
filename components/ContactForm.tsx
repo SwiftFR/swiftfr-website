@@ -7,6 +7,7 @@ export default function ContactForm() {
     storeUrl: "",
     monthlyOrderVolume: "",
     salesChannels: [] as string[],
+    otherSalesChannel: "",
     productLink: "",
     dimensions: { length: "", width: "", height: "", weight: "" },
     destinations: [] as string[],
@@ -28,6 +29,9 @@ export default function ContactForm() {
       [field]: prev[field].includes(value)
         ? prev[field].filter((item) => item !== value)
         : [...prev[field], value],
+      ...(field === "salesChannels" && value === "Other" && prev.salesChannels.includes("Other")
+        ? { otherSalesChannel: "" }
+        : {}),
     }));
   };
 
@@ -46,19 +50,30 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setStatus({ type: null, message: "" });
 
+    const isOtherSelected =
+      formData.salesChannels.includes("Other") && !formData.otherSalesChannel.trim();
+
     // Basic validation
     if (!formData.storeUrl || !formData.monthlyOrderVolume || !formData.productLink || 
-        !formData.startTimeline || !formData.contactName || !formData.email) {
+        !formData.startTimeline || !formData.contactName || !formData.email || isOtherSelected) {
       setStatus({ type: "error", message: "Please fill in all required fields" });
       setIsSubmitting(false);
       return;
     }
 
     try {
+      const normalizedSalesChannels = formData.salesChannels.includes("Other")
+        ? [
+            ...formData.salesChannels.filter((channel) => channel !== "Other"),
+            formData.otherSalesChannel.trim(),
+          ]
+        : formData.salesChannels;
+
       const payload = {
         storeUrl: formData.storeUrl,
         monthlyOrderVolume: formData.monthlyOrderVolume,
-        salesChannels: formData.salesChannels,
+        salesChannels: normalizedSalesChannels,
+        otherSalesChannel: formData.otherSalesChannel.trim(),
         productLink: formData.productLink,
         dimensions: {
           length: formData.dimensions.length ? parseFloat(formData.dimensions.length) : null,
@@ -88,6 +103,7 @@ export default function ContactForm() {
         storeUrl: "",
         monthlyOrderVolume: "",
         salesChannels: [],
+        otherSalesChannel: "",
         productLink: "",
         dimensions: { length: "", width: "", height: "", weight: "" },
         destinations: [],
@@ -171,6 +187,15 @@ export default function ContactForm() {
               <span className="ml-2 text-sm text-gray-700">{channel}</span>
             </label>
           ))}
+          {formData.salesChannels.includes("Other") && (
+            <input
+              type="text"
+              value={formData.otherSalesChannel}
+              onChange={(e) => setFormData({ ...formData, otherSalesChannel: e.target.value })}
+              placeholder="Please specify other channel"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
+            />
+          )}
         </div>
       </div>
 

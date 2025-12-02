@@ -10,6 +10,7 @@ export async function POST(request: Request) {
       storeUrl,
       monthlyOrderVolume,
       salesChannels,
+      otherSalesChannel,
       productLink,
       dimensions,
       destinations,
@@ -68,6 +69,7 @@ Email: ${email}
 Store URL: ${storeUrl}
 Monthly order volume: ${monthlyOrderVolume}
 Sales channels: ${(salesChannels || []).join(", ") || "—"}
+Other sales channel: ${otherSalesChannel || "—"}
 Product link: ${productLink}
 
 Dimensions (L x W x H, weight):
