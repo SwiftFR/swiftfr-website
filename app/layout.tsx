@@ -1,34 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import EmailButton from "@/components/EmailButton";
-import Script from "next/script";
+import Script from 'next/script'
+import EmailButton from '@/components/EmailButton'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3"
-    strategy="afterInteractive" 
-  />
-<Script id="ga4" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XZ6D9ZMVK3');
-  `}
-</Script>
-      </head>
-      <body>{children}</body>
-    </html>
-  )
-}
-
-const poppins = Poppins({ subsets: ['latin'], weight: ['400','500','600','700'] })
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
 const siteUrl = 'https://swiftfr-website.vercel.app'
+const GA_MEASUREMENT_ID = 'G-XZ6D9ZMVK3'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -66,17 +45,26 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={poppins.className}>
       <body className="bg-white text-gray-900 antialiased min-h-screen flex flex-col">
         {children}
         <EmailButton />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XZ6D9ZMVK3', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </body>
     </html>
   )
