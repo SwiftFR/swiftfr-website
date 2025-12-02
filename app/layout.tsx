@@ -6,7 +6,7 @@ import EmailButton from '@/components/EmailButton'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
-const siteUrl = 'https://swiftfr-website.vercel.app'
+const siteUrl = 'https://swiftfr.com'
 const GA_MEASUREMENT_ID = 'G-XZ6D9ZMVK3'
 
 export const metadata: Metadata = {
@@ -48,11 +48,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={poppins.className}>
-      <body className="bg-white text-gray-900 antialiased min-h-screen flex flex-col">
-        {children}
-        <EmailButton />
+      <head>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3'`}
           strategy="afterInteractive"
         />
         <Script id="ga4" strategy="afterInteractive">
@@ -60,11 +58,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XZ6D9ZMVK3', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', 'G-XZ6D9ZMVK3'');
           `}
         </Script>
+      </head>
+      <body className="bg-white text-gray-900 antialiased min-h-screen flex flex-col">
+        {children}
+        <EmailButton />
       </body>
     </html>
   )

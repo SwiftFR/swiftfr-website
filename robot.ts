@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const siteUrl = 'https://swiftfr-website.vercel.app'
+const siteUrl = 'https://swiftfr.com'
 
 export default function robots(): MetadataRoute.Robots {
   return {
