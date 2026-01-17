@@ -50,15 +50,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={poppins.className}>
       <head>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XZ6D9ZMVK3'`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="ga4" strategy="afterInteractive">
-          {`
+          {`  
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XZ6D9ZMVK3'');
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
       </head>
