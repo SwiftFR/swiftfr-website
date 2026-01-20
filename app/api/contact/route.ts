@@ -5,7 +5,6 @@ import nodemailer from "nodemailer";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-
     const {
       storeUrl,
       monthlyOrderVolume,
@@ -20,7 +19,7 @@ export async function POST(request: Request) {
       notes,
     } = body;
 
-    // Basic validation – must match your ContactForm required fields
+    // Basic validation
     if (
       !storeUrl ||
       !monthlyOrderVolume ||
@@ -46,9 +45,11 @@ export async function POST(request: Request) {
       user,
       hasPass: !!pass,
       passLen: pass?.length,
+      host,
+      port,
     });
 
-    // If SMTP isn’t configured, just log to console and still return ok
+    // If SMTP isn't configured, just log to console
     if (!user || !pass || !host || !to) {
       console.error(
         "[contact] Missing SMTP_* or NOTIFY_EMAIL env vars – not sending email."
@@ -60,33 +61,34 @@ export async function POST(request: Request) {
       });
     }
 
-    // ✅ DEFINE text here
     const text = `New SwiftFR contact form submission:
 
 Contact name: ${contactName}
 Email: ${email}
-
 Store URL: ${storeUrl}
 Monthly order volume: ${monthlyOrderVolume}
 Sales channels: ${(salesChannels || []).join(", ") || "—"}
 Other sales channel: ${otherSalesChannel || "—"}
 Product link: ${productLink}
-
 Dimensions (L x W x H, weight):
-${dimensions?.length || "-"} x ${dimensions?.width || "-"} x ${
+  ${dimensions?.length || "-"} x ${dimensions?.width || "-"} x ${
       dimensions?.height || "-"
     } cm, ${dimensions?.weight || "-"} kg
-
 Typical destinations: ${(destinations || []).join(", ") || "—"}
 Start timeline: ${startTimeline}
-
 Additional notes:
 ${notes || "—"}
 `;
 
+    // ✅ FIX: Use explicit host/port config instead of service: "gmail"
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user, pass },
+      host,
+      port,
+      secure: port === 465, // true for 465, false for other ports
+      auth: {
+        user,
+        pass,
+      },
     });
 
     await transporter.sendMail({
@@ -100,7 +102,7 @@ ${notes || "—"}
   } catch (err) {
     console.error("[contact] Error handling submission:", err);
     return NextResponse.json(
-      { error: "Server error" },
+      { error: "Server error", details: err instanceof Error ? err.message : String(err) },
       { status: 500 }
     );
   }
