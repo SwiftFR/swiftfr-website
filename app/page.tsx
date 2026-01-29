@@ -90,7 +90,7 @@ export default function HomePage() {
         >
           Scale Your Shopify Store with Professional China Fulfillment
           <br />
-          <span className="text-red-500">No Platform Fees, No Delays</span>
+          <span className="text-red-500"> Zero Platform Fees, Zero Delays</span>
         </motion.h1>
 
         <motion.p
@@ -99,8 +99,7 @@ export default function HomePage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-4 text-gray-600"
         >
-          We connect growing e-commerce stores (10-100+ orders/day) directly to factory-sourced products and fulfillment in China. Get competitive pricing, automatic Shopify integration, and transparent quotes—without CJ Dropshipping's markup or AutoDS platform fees.
-        </motion.p>
+         We connect growing e-commerce stores doing 10 to 100+ orders/day directly to factory-sourced products and fulfillment in China. Get competitive pricing, Shopify integration and transparent quotes without platform fees.        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -125,10 +124,10 @@ export default function HomePage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-600"
         >
-          <span>✓ No platform fees</span>
-          <span>✓ Factory-direct pricing</span>
-          <span>✓ Shopify integration</span>
-          <span>✓ Flexible MOQ</span>
+          <span> No platform fees</span>
+          <span> Factory-direct pricing</span>
+          <span> Shopify integration</span>
+          <span> Flexible MOQ</span>
         </motion.div>
         </div>
 
