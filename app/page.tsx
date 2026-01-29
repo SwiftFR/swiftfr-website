@@ -125,6 +125,7 @@ export default function HomePage() {
 >
   How It Works
 </Link>
+</motion.div>
 
         </div>
 
