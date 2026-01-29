@@ -82,44 +82,54 @@ export default function HomePage() {
       <section className="py-16 sm:py-24">
         {/* HERO */}
         <div className="mx-auto max-w-3xl text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl font-semibold sm:text-5xl"
-          >
-            Fulfillment Simplified
-            <br />
-            No Hidden Fees, No Delays
-          </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-semibold sm:text-5xl"
+        >
+          Scale Your Shopify Store with Professional China Fulfillment
+          <br />
+          <span className="text-red-500">No Platform Fees, No Delays</span>
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-gray-600"
-          >
-            SwiftFR helps e-commerce brands scale faster by connecting them with
-            reliable Chinese 3PLs that deliver 5–12 day shipping to the EU and
-            US without the usual headaches, hidden fees, or poor communication.
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-4 text-gray-600"
+        >
+          We connect growing e-commerce stores (10-100+ orders/day) directly to factory-sourced products and fulfillment in China. Get competitive pricing, automatic Shopify integration, and transparent quotes—without CJ Dropshipping's markup or AutoDS platform fees.
+        </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8 flex items-center justify-center gap-3"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-8 flex items-center justify-center gap-3"
+        >
+          <Link href="/contact" className="btn-primary">
+            Get Your Free Fulfillment Audit
+          </Link>
+          <Link
+            href="/services"
+            className="btn-secondary"
           >
-            <Link href="/contact" className="btn-primary">
-              Request a Free Quote
-            </Link>
-            <Link
-              href="/services"
-              className="rounded-lg px-5 py-3 font-medium ring-1 ring-gray-200 transition hover:bg-gray-50"
-            >
-              How it works
-            </Link>
-          </motion.div>
+            How It Works
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-600"
+        >
+          <span>✓ No platform fees</span>
+          <span>✓ Factory-direct pricing</span>
+          <span>✓ Shopify integration</span>
+          <span>✓ Flexible MOQ</span>
+        </motion.div>
         </div>
 
         {/* WHY CHOOSE US */}

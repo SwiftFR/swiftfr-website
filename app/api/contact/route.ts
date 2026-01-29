@@ -1,6 +1,8 @@
 // app/api/contact/route.ts
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -19,7 +21,6 @@ export async function POST(request: Request) {
       notes,
     } = body;
 
-    // Basic validation
     if (
       !storeUrl ||
       !monthlyOrderVolume ||
@@ -34,33 +35,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Read SMTP config from environment
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const host = process.env.SMTP_HOST;
-    const port = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587;
-    const to = process.env.NOTIFY_EMAIL || user;
-
-    console.log("[contact] SMTP debug:", {
-      user,
-      hasPass: !!pass,
-      passLen: pass?.length,
-      host,
-      port,
-    });
-
-    // If SMTP isn't configured, just log to console
-    if (!user || !pass || !host || !to) {
-      console.error(
-        "[contact] Missing SMTP_* or NOTIFY_EMAIL env vars – not sending email."
-      );
-      console.log("[contact] Form submission:", body);
-      return NextResponse.json({
-        ok: true,
-        warning: "Email not sent – SMTP not configured on server.",
-      });
-    }
-
     const text = `New SwiftFR contact form submission:
 
 Contact name: ${contactName}
@@ -70,39 +44,29 @@ Monthly order volume: ${monthlyOrderVolume}
 Sales channels: ${(salesChannels || []).join(", ") || "—"}
 Other sales channel: ${otherSalesChannel || "—"}
 Product link: ${productLink}
-Dimensions (L x W x H, weight):
+Dimensions:
   ${dimensions?.length || "-"} x ${dimensions?.width || "-"} x ${
       dimensions?.height || "-"
     } cm, ${dimensions?.weight || "-"} kg
-Typical destinations: ${(destinations || []).join(", ") || "—"}
+Destinations: ${(destinations || []).join(", ") || "—"}
 Start timeline: ${startTimeline}
-Additional notes:
+
+Notes:
 ${notes || "—"}
 `;
 
-    // ✅ FIX: Use explicit host/port config instead of service: "gmail"
-    const transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465, // true for 465, false for other ports
-      auth: {
-        user,
-        pass,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `SwiftFR Website <${user}>`,
-      to,
+    await resend.emails.send({
+      from: "SwiftFR <onboarding@resend.dev>",
+      to: process.env.NOTIFY_EMAIL!,
       subject: "New SwiftFR contact form submission",
       text,
     });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[contact] Error handling submission:", err);
+    console.error("[contact] Error:", err);
     return NextResponse.json(
-      { error: "Server error", details: err instanceof Error ? err.message : String(err) },
+      { error: "Server error" },
       { status: 500 }
     );
   }
