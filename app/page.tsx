@@ -107,28 +107,25 @@ export default function HomePage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-8 flex items-center justify-center gap-3"
         >
-          <Link href="/contact" className="btn-primary">
-            Get Your Free Fulfillment Audit
-          </Link>
-          <Link
-            href="/services"
-            className="btn-secondary"
-          >
-            How It Works
-          </Link>
-        </motion.div>
+         <Link href="/contact" className="btn-primary">
+  Get Your Free Fulfillment Audit
+</Link>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-600"
-        >
-          <span> No platform fees</span>
-          <span> Factory-direct pricing</span>
-          <span> Shopify integration</span>
-          <span> Flexible MOQ</span>
-        </motion.div>
+<Link
+  href="/services"
+  className="
+    inline-flex items-center justify-center
+    border border-red-500
+    text-red-500
+    px-4 py-2
+    rounded
+    transition-colors duration-200
+    hover:bg-red-500 hover:text-white
+  "
+>
+  How It Works
+</Link>
+
         </div>
 
         {/* WHY CHOOSE US */}
